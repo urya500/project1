@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Survey</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .survey-container {
+            margin-top: 50px;
+        }
+        .survey-header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .survey-body {
+            background-color: white;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .survey-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container survey-container">
+    <div class="survey-header text-center">
+        <h2>Survey</h2>
+        <p>We value your feedback</p>
+    </div>
+    <div class="survey-body">
+        <form action="{{ url_for('process_survey', file_number=file_number) }}" method="POST">
+            {% for column in columns %}
+            <div class="form-group">
+                <label for="{{ column }}">{{ column }}</label>
+                <input type="number" class="form-control" id="{{ column }}" name="{{ column }}" placeholder="Enter {{ column }} as an integer">
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+    <div class="survey-footer">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
